@@ -5,7 +5,7 @@ import { IFit } from '@/Types/FitTypes';
 
 
 const FitResponse = async () => {
-    const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {cache: "no-store"});
 
     return res.json();
 }

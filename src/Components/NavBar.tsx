@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const navItem = <>
         <li className='hover:bg-lime-500/10 hover:text-lime-500 text-sm font-bold rounded-full'><Link href='/'>Workouts</Link></li>
-        <li className='hover:bg-lime-500/10 hover:text-lime-500 text-sm font-bold rounded-full'><Link href='/'>My Plan</Link></li>
+        <li className='hover:bg-lime-500/10 hover:text-lime-500 text-sm font-bold rounded-full'><Link href='/my-plan'>My Plan</Link></li>
     </>
 
 
