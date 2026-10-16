@@ -12,17 +12,18 @@ import { IoFlame } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
 import { FaCheck } from 'react-icons/fa6';
 
-
+interface SavePlanRouteProps {
+  plans: IFit[];
+}
 
 interface PlanContextType {
-  myPlan: IFit[];
   setMyPlan: Dispatch<SetStateAction<IFit[]>>;
 }
 
 
 
-const TodayPlanRoute = ({ plans }) => {
-    const { myPlan, setMyPlan }:PlanContextType = useContext(PlanContext) as PlanContextType;;
+const TodayPlanRoute = ({ plans }:SavePlanRouteProps) => {
+    const {setMyPlan }:PlanContextType = useContext(PlanContext) as PlanContextType;;
 
    
     const handleRemove = (id: string | number) => {

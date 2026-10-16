@@ -2,7 +2,7 @@
 
 import { PlanContext } from '@/context/PlanContext';
 import Image from 'next/image';
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { FiClock, FiStar } from 'react-icons/fi';
 import { IoFlame } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
@@ -11,8 +11,18 @@ import { toast } from 'react-toastify';
 import { IFit } from '@/Types/FitTypes';
 import Link from 'next/link';
 
-const SavePlanRoute = ({ plans }) => {
-    const { savePlan, setSavePlan } = useContext(PlanContext);
+
+
+interface SavePlanRouteProps {
+  plans: IFit[];
+}
+interface PlanContextType {
+  setSavePlan: Dispatch<SetStateAction<IFit[]>>;}
+
+
+
+const SavePlanRoute = ({ plans }:SavePlanRouteProps) => {
+    const { setSavePlan }:PlanContextType = useContext(PlanContext) as PlanContextType;
 
     const handleRemoveFromSaved = (id: string | number) => {
         if (setSavePlan) {
@@ -20,6 +30,8 @@ const SavePlanRoute = ({ plans }) => {
             toast.info("Removed from saved list!");
         }
     };
+
+
 
 
     return (
