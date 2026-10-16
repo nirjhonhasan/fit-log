@@ -6,6 +6,8 @@ import Footer from "@/Components/Footer";
 import PlanProvider from "@/context/PlanContext";
 import { ToastContainer } from "react-toastify";
 import ButtonProvider from "@/context/ButtonContext";
+import { Suspense } from "react";
+import Providers from "./provider/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,20 +35,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
       <body className="min-h-full flex flex-col">
 
-        <PlanProvider>
-          <ButtonProvider>
-
-
-
-
+        <Suspense fallback={null}>
+          <Providers>
             <NavBar />
-
-            {children}
+            <main className="flex-grow">{children}</main>
             <Footer />
-
-
-          </ButtonProvider>
-        </PlanProvider>
+          </Providers>
+        </Suspense>
 
 
 
