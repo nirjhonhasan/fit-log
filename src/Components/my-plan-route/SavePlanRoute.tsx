@@ -9,11 +9,11 @@ import { RxCross2 } from 'react-icons/rx';
 import { FaPlus } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import { IFit } from '@/Types/FitTypes';
+import Link from 'next/link';
 
 const SavePlanRoute = () => {
-    const { savePlan, setSavePlan, setMyPlan } = useContext(PlanContext);
+    const { savePlan, setSavePlan } = useContext(PlanContext);
 
-    // Saved list থেকে কোনো আইটেম সরানোর হ্যান্ডলার
     const handleRemoveFromSaved = (id: string | number) => {
         if (setSavePlan) {
             setSavePlan((prev:IFit[]) => prev.filter((item:IFit) => item.id !== id));
@@ -21,21 +21,6 @@ const SavePlanRoute = () => {
         }
     };
 
-    // Saved list থেকে Today's Plan-এ মুভ/অ্যাড করার হ্যান্ডলার
-    const handleMoveToTodayPlan = (plan:IFit) => {
-        if (setMyPlan) {
-            setMyPlan((prev:IFit[]) => {
-                // ডুপ্লিকেট চেকিং (যদি ইতিমধ্যে Today's Plan-এ থাকে)
-                const exists = prev.some((item:IFit) => item.id === plan.id);
-                if (exists) {
-                    toast.warning("Already in Today's Plan!");
-                    return prev;
-                }
-                toast.success("Added to Today's Plan!");
-                return [...prev, plan];
-            });
-        }
-    };
 
     return (
         <div className="w-full flex flex-col gap-4 p-4">
@@ -74,28 +59,22 @@ const SavePlanRoute = () => {
                                 </span>
                                 <span className="flex items-center gap-1 text-lime-400">
                                     <FiStar className="text-lime-400 text-sm" />
-                                    {plan.rating || 4.1}
+                                    {plan.rating }
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Side: Action Buttons */}
+                    
                     <div className="flex items-center gap-3 w-full sm:w-auto justify-end mt-2 sm:mt-0">
-                        <button className="px-4 py-2 rounded-full border border-gray-700 hover:border-gray-500 text-gray-200 text-xs font-semibold transition-all">
+                        <Link href={`/workouts/${plan.id}`}
+                         className="px-4 py-2 rounded-full border border-gray-700 hover:border-gray-500 text-gray-200 text-xs font-semibold transition-all">
                             View Details
-                        </button>
+                        </Link>
 
-                        {/* Saved থেকে Today's Plan-এ যুক্ত করার বাটন */}
-                        <button
-                            onClick={() => handleMoveToTodayPlan(plan)}
-                            className="px-4 py-2 rounded-full bg-[#ccff00] hover:bg-[#b5e600] text-black font-bold text-xs flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
-                        >
-                            <FaPlus className="text-xs" />
-                            Add to Today's Plan
-                        </button>
+                        
 
-                        {/* Remove Button */}
+                        
                         <button
                             onClick={() => handleRemoveFromSaved(plan.id)}
                             className="text-gray-500 hover:text-gray-300 p-1 transition-all ml-1 cursor-pointer"

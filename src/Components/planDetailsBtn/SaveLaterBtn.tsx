@@ -29,7 +29,7 @@ const SaveLaterBtn = ({ item }: { item: IFit }) => {
             }
     
             setSavePlan([...savePlan, item]);
-            toast.success(`You've added ${item.name} to your Saved Plan`);
+            toast.success(`Saved for Later`);
         };
 
     

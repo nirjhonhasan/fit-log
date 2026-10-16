@@ -30,7 +30,7 @@ const TodayPlanBtn = ({ item }: { item: IFit }) => {
         }
 
         setMyPlan([...myPlan, item]);
-        toast.success(`You've added ${item.name} to your Daily Plan`);
+        toast.success(`Added to Today's Plan`);
     };
 
 

@@ -22,9 +22,9 @@ const Minutes = () => {
     return (
         <div>
             {
-                isActive === "plan" ? <h1 className='text-5xl font-bold text-lime-500'>
+                isActive === "plan" ? <h1 className='text-5xl font-bold'>
                     {totalPlanMinutes}
-                </h1> : <h1 className='text-5xl font-bold text-lime-500'>
+                </h1> : <h1 className='text-5xl font-bold'>
                     {totalSavedMinutes}
                 </h1>
             }

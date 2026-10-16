@@ -13,7 +13,7 @@ const SavedBtn = () => {
     return (
         <div>
             <Link href='/my-plan'>
-            Saved <span className='bg-lime-500 text-black text-sm font-bold px-2 rounded-full'> {savePlan.length}</span></Link>
+            Saved <span className='border border-white text-sm font-bold px-2 rounded-full'> {savePlan.length}</span></Link>
         </div>
     );
 };

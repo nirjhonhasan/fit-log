@@ -2,11 +2,12 @@
 
 
 import { PlanContext } from '@/context/PlanContext';
+import { IFit } from '@/Types/FitTypes';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 
 const PlanBtn = () => {
-    const { myPlan } = useContext(PlanContext);
+    const { myPlan }:{myPlan:IFit[]} = useContext(PlanContext) as {myPlan:IFit[]};
     return (
         <div>
             <Link href='/my-plan'>

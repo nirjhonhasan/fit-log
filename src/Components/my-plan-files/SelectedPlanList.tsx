@@ -25,6 +25,9 @@ interface ButtonContextType {
 
 const SelectedPlanList = () => {
 
+    const [shortby, setShortBy] = useState<"duration" | "min" | "cal">("duration");
+
+
     const { myPlan, savePlan }: PlanContextType = useContext(PlanContext) as PlanContextType;
     const { isActive, setIsActive }: ButtonContextType = useContext(ButtonContext) as ButtonContextType;
 
@@ -51,9 +54,29 @@ const SelectedPlanList = () => {
 
                 <div className='flex justify-between items-center gap-4'>
                     <h2 className='text-sm font-light'>Short By</h2>
-                    <button>Duration</button>
+
+
+
+
+                    <div>
+                        <select defaultValue="shortby" 
+                        onChange={(e) => setShortBy(e.target.value as "duration" | "min" | "cal")}
+                        className="select appearance-none">
+                        
+
+                            <option disabled={true}>Duration</option>
+                            <option value={"duration"}>Duration</option>
+                            <option value={"min"}>Minute</option>
+                            <option value={"cal"}>Calories</option>
+                        </select>
+                    </div>
+
+
+
                 </div>
             </div>
+
+
 
 
             <div className='flex justify-center items-center border-dashed border border-gray-700 mt-6 rounded-2xl'>
