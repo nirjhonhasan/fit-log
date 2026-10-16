@@ -1,19 +1,38 @@
+"use client"
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import TodayPlanRoute from '../my-plan-route/TodayPlanRoute';
+import { PlanContext } from '@/context/PlanContext';
+import SavePlanRoute from '../my-plan-route/SavePlanRoute';
+import { ButtonContext } from '@/context/ButtonContext';
+
+
+
 
 const SelectedPlanList = () => {
+
+    const { myPlan, savePlan } = useContext(PlanContext);
+    const {isActive, setIsActive} = useContext(ButtonContext);
+
     return (
         <div>
             <div className='flex justify-between items-center'>
-                <div className='bg-black/20 inline px-1 py-3 rounded-2xl'>
+                <div className='bg-black/20 inline px-2 py-2 rounded-full'>
 
-                    <Link href='/' className='rounded-2xl text-md font-light text-gray-500
-                 hover:text-white hover:bg-gray-800 px-4 py-2'
-                    >Today's Plan</Link>
+                    <button onClick={() => setIsActive("plan")}
+                        className={`rounded-2xl text-md px-4 py-2 transition-all ${isActive === "plan"
+                            ? "bg-lime-500 text-black font-bold"
+                            : "bg-transparent text-gray-400 hover:text-white hover:bg-gray-800/60 font-light"
+                            }`}
+                    >Today's Plan</button>
 
-                    <Link href='/' className='rounded-2xl text-md font-light text-gray-500
-                 hover:text-white hover:bg-gray-800 px-4 py-2'
-                    > Saved </Link>
+                    <button onClick={() => setIsActive("saved")}
+                        className={`rounded-2xl text-md px-4 py-2 transition-all ${isActive === "saved"
+                            ? "bg-lime-500 text-black font-bold"
+                            : "bg-transparent text-gray-400 hover:text-white hover:bg-gray-800/60 font-light"
+                            }`}
+                    > Saved </button>
 
                 </div>
 
@@ -24,13 +43,38 @@ const SelectedPlanList = () => {
             </div>
 
 
-            <div className='flex justify-center items-center min-h-[400px] border-dashed border border-gray-700 mt-6 rounded-2xl'>
-                <div className='flex flex-col text-center justify-center'>
-                    <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
-                    <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
-                    <Link href='/' className='px-4 py-2 rounded-full bg-lime-500 text-black
-                    font-bold '>Go to Workouts</Link>
-                </div>
+            <div className='flex justify-center items-center border-dashed border border-gray-700 mt-6 rounded-2xl'>
+
+                {isActive === "plan" ? (
+                    myPlan.length === 0 ? (
+                        <div className='flex flex-col text-center justify-center items-center py-[120px]'>
+                            <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
+                            <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
+                            <Link href='/' className='px-4 py-2 rounded-full bg-lime-500 text-black font-bold'>
+                                Go to Workouts
+                            </Link>
+                        </div>
+                    ) : (
+                        <TodayPlanRoute /> 
+                    )
+                ) : (
+                    savePlan.length === 0 ? (
+                        <div className='flex flex-col text-center justify-center items-center py-[120px]'>
+                            <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
+                            <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
+                            <Link href='/' className='px-4 py-2 rounded-full bg-lime-500 text-black font-bold'>
+                                Go to Workouts
+                            </Link>
+                        </div>
+                    ) : (
+                        <SavePlanRoute />
+                    )
+                )}
+
+
+
+                
+
             </div>
 
         </div>

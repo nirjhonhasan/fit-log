@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import logo from '@/assets/logo.png';
 import Link from 'next/link';
+import PlanBtn from './Nav-btn-activities/PlanBtn';
+import SavedBtn from './Nav-btn-activities/SavedBtn';
 
 
 
@@ -12,6 +14,8 @@ const navItem = <>
 
 
 const NavBar = () => {
+
+
     return (
         <div className="navbar container mx-auto">
             <div className="navbar-start">
@@ -39,9 +43,9 @@ const NavBar = () => {
                    {navItem}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Plan</a>
-                <a className="btn">Saved</a>
+            <div className="navbar-end gap-4">
+                <PlanBtn/> <SavedBtn/>
+                
             </div>
         </div>
     );

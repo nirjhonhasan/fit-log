@@ -1,7 +1,15 @@
+import Calories from '@/Components/my-plan-componant/Calories';
+import Excersice from '@/Components/my-plan-componant/Excersice';
+import Minutes from '@/Components/my-plan-componant/Minutes';
 import SelectedPlanList from '@/Components/my-plan-files/SelectedPlanList';
 import React from 'react';
 
+
+
+
+
 const page = () => {
+
     return (
         <div className='container mx-auto mt-16 space-y-8'>
             <div>
@@ -15,19 +23,19 @@ const page = () => {
 
                 <div className='flex flex-col justify-start '>
                     <h2 className='text-sm font-light text-gray-400 '>Excersice</h2>
-                    <h1 className='text-5xl font-bold text-lime-500'>2</h1>
+                    <Excersice/>
                 </div>
 
 
                 <div className='flex flex-col justify-start border-l border-gray-700/60 pl-6'>
                     <h2 className='text-sm font-light text-gray-400'>Minutes</h2>
-                    <h1 className='text-5xl font-bold'>23</h1>
+                    <Minutes/>
                 </div>
 
 
                 <div className='flex flex-col items-start border-l border-gray-700/60 pl-6'>
                     <h2 className='text-sm font-light text-gray-400'>Calories</h2>
-                    <h1 className='text-5xl font-bold'>190</h1>
+                    <Calories/>
                 </div>
 
             </div>

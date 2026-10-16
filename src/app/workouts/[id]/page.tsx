@@ -1,9 +1,14 @@
 import { IFit } from '@/Types/FitTypes';
 import Image from 'next/image';
 import React from 'react';
+import SaveLaterBtn from '@/Components/planDetailsBtn/SaveLaterBtn';
+import TodayPlanBtn from '@/Components/planDetailsBtn/TodayPlanBtn';
 
-
-
+interface DetailsPageProps {
+    params: Promise<{
+        id: string;
+    }>;
+}
 
 const FitData = async () => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog', { cache: "no-store" });
@@ -13,7 +18,7 @@ const FitData = async () => {
 
 
 
-const page = async ({ params }) => {
+const page = async ({ params }:DetailsPageProps) => {
 
     const { id } = await params;
     const items = await FitData();
@@ -107,12 +112,8 @@ const page = async ({ params }) => {
 
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
-                        <button className="w-full sm:flex-1 bg-[#ccff00] hover:bg-[#b5e600] text-black font-bold py-3 px-5 rounded-xl flex items-center justify-center gap-2 text-sm transition-all shadow-md">
-                            Add to today's plan
-                        </button>
-                        <button className="w-full sm:w-auto bg-[#161822] hover:bg-[#202330] text-gray-300 font-semibold py-3 px-5 rounded-xl flex items-center justify-center gap-2 text-sm border border-gray-800 transition-all">
-                            Save for later
-                        </button>
+                        <TodayPlanBtn item={item}/>
+                        <SaveLaterBtn item={item}/>
                     </div>
 
                 </div>
