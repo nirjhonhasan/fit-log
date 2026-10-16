@@ -21,7 +21,7 @@ interface PlanContextType {
 
 
 
-const TodayPlanRoute = () => {
+const TodayPlanRoute = ({ plans }) => {
     const { myPlan, setMyPlan }:PlanContextType = useContext(PlanContext) as PlanContextType;;
 
    
@@ -35,7 +35,7 @@ const TodayPlanRoute = () => {
 
     return (
         <div className="w-full flex flex-col gap-4 p-4">
-            {myPlan?.map((plan: IFit) => (
+            {plans?.map((plan: IFit) => (
                 <div
                     key={plan.id}
                     className="w-full bg-[#12141d] border border-gray-800/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-gray-700 transition-all shadow-lg"

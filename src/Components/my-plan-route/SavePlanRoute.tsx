@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import { IFit } from '@/Types/FitTypes';
 import Link from 'next/link';
 
-const SavePlanRoute = () => {
+const SavePlanRoute = ({ plans }) => {
     const { savePlan, setSavePlan } = useContext(PlanContext);
 
     const handleRemoveFromSaved = (id: string | number) => {
@@ -24,7 +24,7 @@ const SavePlanRoute = () => {
 
     return (
         <div className="w-full flex flex-col gap-4 p-4">
-            {savePlan?.map((plan:IFit, index: number) => (
+            {plans?.map((plan:IFit, index: number) => (
                 <div
                     key={plan.id || index}
                     className="w-full bg-[#12141d] border border-gray-800/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-gray-700 transition-all shadow-lg"

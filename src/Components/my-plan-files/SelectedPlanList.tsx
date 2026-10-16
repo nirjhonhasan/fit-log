@@ -25,11 +25,33 @@ interface ButtonContextType {
 
 const SelectedPlanList = () => {
 
-    const [shortby, setShortBy] = useState<"duration" | "min" | "cal">("duration");
+    const [shortby, setShortBy] = useState<"duration" | "rating" | "cal">("duration");
 
 
     const { myPlan, savePlan }: PlanContextType = useContext(PlanContext) as PlanContextType;
     const { isActive, setIsActive }: ButtonContextType = useContext(ButtonContext) as ButtonContextType;
+
+
+
+    
+    const currentList = isActive === "plan" ? myPlan : savePlan;
+
+    const sortedPlan = [...currentList].sort((a, b) => {
+        if (shortby === "duration") {
+            return (b.duration ) - (a.duration);
+        }
+        if (shortby === "cal") {
+            return (b.caloriesBurned) - (a.caloriesBurned ); 
+        }
+        if (shortby === "rating") {
+            return (b.rating) - (a.rating); 
+        }
+        return 0;
+    });
+
+
+
+
 
     return (
         <div>
@@ -59,14 +81,14 @@ const SelectedPlanList = () => {
 
 
                     <div>
-                        <select defaultValue="shortby" 
-                        onChange={(e) => setShortBy(e.target.value as "duration" | "min" | "cal")}
-                        className="select appearance-none">
-                        
+                        <select defaultValue="shortby"
+                            onChange={(e) => setShortBy(e.target.value as "duration" | "rating" | "cal")}
+                            className="select appearance-none">
+
 
                             <option disabled={true}>Duration</option>
                             <option value={"duration"}>Duration</option>
-                            <option value={"min"}>Minute</option>
+                            <option value={"rating"}>Rating</option>
                             <option value={"cal"}>Calories</option>
                         </select>
                     </div>
@@ -82,7 +104,7 @@ const SelectedPlanList = () => {
             <div className='flex justify-center items-center border-dashed border border-gray-700 mt-6 rounded-2xl'>
 
                 {isActive === "plan" ? (
-                    myPlan.length === 0 ? (
+                    sortedPlan.length === 0 ? (
                         <div className='flex flex-col text-center justify-center items-center py-[120px]'>
                             <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
                             <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
@@ -91,10 +113,10 @@ const SelectedPlanList = () => {
                             </Link>
                         </div>
                     ) : (
-                        <TodayPlanRoute />
+                        <TodayPlanRoute plans={sortedPlan} />
                     )
                 ) : (
-                    savePlan.length === 0 ? (
+                    sortedPlan.length === 0 ? (
                         <div className='flex flex-col text-center justify-center items-center py-[120px]'>
                             <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
                             <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
@@ -103,7 +125,7 @@ const SelectedPlanList = () => {
                             </Link>
                         </div>
                     ) : (
-                        <SavePlanRoute />
+                        <SavePlanRoute plans={sortedPlan} />
                     )
                 )}
 
