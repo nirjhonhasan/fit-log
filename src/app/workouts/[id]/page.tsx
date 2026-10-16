@@ -4,6 +4,8 @@ import React from 'react';
 import SaveLaterBtn from '@/Components/planDetailsBtn/SaveLaterBtn';
 import TodayPlanBtn from '@/Components/planDetailsBtn/TodayPlanBtn';
 
+// export const dynamic = "force-dynamic";
+
 interface DetailsPageProps {
     params: Promise<{
         id: string;
