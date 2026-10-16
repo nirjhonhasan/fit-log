@@ -1,19 +1,32 @@
 "use client"
 
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import TodayPlanRoute from '../my-plan-route/TodayPlanRoute';
 import { PlanContext } from '@/context/PlanContext';
 import SavePlanRoute from '../my-plan-route/SavePlanRoute';
 import { ButtonContext } from '@/context/ButtonContext';
+import { IFit } from '@/Types/FitTypes';
+
+
+
+interface PlanContextType {
+    myPlan: IFit[];
+    savePlan: IFit[];
+}
+
+interface ButtonContextType {
+    isActive: string;
+    setIsActive: Dispatch<SetStateAction<string>>;
+}
 
 
 
 
 const SelectedPlanList = () => {
 
-    const { myPlan, savePlan } = useContext(PlanContext);
-    const {isActive, setIsActive} = useContext(ButtonContext);
+    const { myPlan, savePlan }: PlanContextType = useContext(PlanContext) as PlanContextType;
+    const { isActive, setIsActive }: ButtonContextType = useContext(ButtonContext) as ButtonContextType;
 
     return (
         <div>
@@ -55,7 +68,7 @@ const SelectedPlanList = () => {
                             </Link>
                         </div>
                     ) : (
-                        <TodayPlanRoute /> 
+                        <TodayPlanRoute />
                     )
                 ) : (
                     savePlan.length === 0 ? (
@@ -73,7 +86,7 @@ const SelectedPlanList = () => {
 
 
 
-                
+
 
             </div>
 

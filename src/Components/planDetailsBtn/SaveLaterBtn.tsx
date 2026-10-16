@@ -18,11 +18,19 @@ const SaveLaterBtn = ({ item }: { item: IFit }) => {
     const { savePlan, setSavePlan }: PlanContextType = useContext(PlanContext) as PlanContextType;
 
 
-    const handleSaveLater = () => {
-        toast.success(`Hello Bangladesh`);
-
-        setSavePlan([...savePlan, item]);
-    }
+        const isAlreadyAdded = savePlan.some((savePlan) => savePlan.id === item.id);
+    
+    
+        const handleSaveLater = () => {
+    
+            if (isAlreadyAdded) {
+                toast.warning(`"${item.name}" is already in your Saved Plan!`);
+                return;
+            }
+    
+            setSavePlan([...savePlan, item]);
+            toast.success(`You've added ${item.name} to your Saved Plan`);
+        };
 
     
 

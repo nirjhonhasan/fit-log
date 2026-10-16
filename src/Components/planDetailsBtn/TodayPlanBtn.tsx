@@ -19,12 +19,19 @@ const TodayPlanBtn = ({ item }: { item: IFit }) => {
 
 
 
+    const isAlreadyAdded = myPlan.some((planItem) => planItem.id === item.id);
+
+
     const handleTodayPlanBtn = () => {
-        toast.success(`Hi, Button is clicked...!`)
+
+        if (isAlreadyAdded) {
+            toast.warning(`"${item.name}" is already in your Daily Plan!`);
+            return;
+        }
 
         setMyPlan([...myPlan, item]);
-
-    }
+        toast.success(`You've added ${item.name} to your Daily Plan`);
+    };
 
 
     return (
