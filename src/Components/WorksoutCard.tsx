@@ -1,7 +1,7 @@
 import { IFit } from '@/Types/FitTypes';
 import React from 'react';
-import { FiClock, FiStar } from 'react-icons/fi'; // React Icons থেকে
-import { FaFire } from 'react-icons/fa'; // React Icons থেকে
+import { FiClock, FiStar } from 'react-icons/fi';
+import { FaFire } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,78 +11,59 @@ interface WorkoutProps {
 
 const WorksoutCard = ({ item }: WorkoutProps) => {
     return (
-        <Link href={`/workouts/${item.id}`}>
-            <div className="bg-[#181a20] rounded-2xl overflow-hidden border border-gray-800 shadow-lg text-white hover:border-gray-700 transition duration-300">
+        <Link href={`/workouts/${item.id}`} className="group block h-full">
+            <article className="h-full flex flex-col bg-surface rounded-2xl overflow-hidden border border-line shadow-lg
+             hover:border-accent/50 hover:-translate-y-1 hover:shadow-accent/5 transition duration-300">
 
-
-                {/* Image Section */}
                 <div className="relative w-full h-48 sm:h-52 overflow-hidden">
                     <Image
                         src={item.image}
                         alt={item.name}
                         width={500}
                         height={400}
-                        className="w-full h-full object-cover object-center"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
                     />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface to-transparent" />
                 </div>
 
-
-
-                {/* Content Section */}
-                <div className="p-5">
-                    {/* Muscle Group Badges */}
+                <div className="p-5 flex flex-col flex-1">
                     <div className="flex flex-wrap gap-2 mb-3">
                         {item.muscleGroups.map((muscle, index) => (
                             <span
                                 key={index}
-                                className="bg-[#ccff00] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+                                className="bg-accent text-black text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider"
                             >
                                 {muscle}
                             </span>
                         ))}
                     </div>
 
-
-
-                    {/* Title */}
-                    <h3 className="text-xl font-black uppercase tracking-wide text-white mb-1">
+                    <h3 className="text-lg sm:text-xl font-black uppercase tracking-wide mb-1">
                         {item.name}
                     </h3>
 
-                    {/* Equipment */}
-                    <p className="text-gray-400 text-sm mb-4 font-medium">
+                    <p className="text-muted text-sm mb-4 font-medium">
                         {item.equipment}
                     </p>
 
-                    {/* Border Divider */}
-                    <div className="border-t border-gray-800/80 my-3"></div>
-
-                    {/* Footer Stats (Duration, Calories, Rating) */}
-
-
-                    <div className="flex items-center justify-between text-gray-400 text-xs sm:text-sm pt-1 mb-6">
-                        {/* Duration */}
+                    <div className="mt-auto flex items-center justify-between gap-2 border-t border-line pt-4 text-muted text-xs sm:text-sm">
                         <div className="flex items-center gap-1.5">
-                            <FiClock className="w-4 h-4 text-gray-400" />
+                            <FiClock className="w-4 h-4" />
                             <span>{item.duration} min</span>
                         </div>
-
-                        {/* Calories */}
                         <div className="flex items-center gap-1.5">
                             <FaFire className="w-4 h-4 text-orange-500" />
                             <span>{item.caloriesBurned} kcal</span>
                         </div>
-
-                        {/* Rating */}
                         <div className="flex items-center gap-1.5">
                             <FiStar className="w-4 h-4 text-yellow-400" />
                             <span>{item.rating}</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </article>
         </Link>
-
     );
 };
 

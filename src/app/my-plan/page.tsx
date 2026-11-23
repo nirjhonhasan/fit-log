@@ -4,46 +4,32 @@ import Minutes from '@/Components/my-plan-componant/Minutes';
 import SelectedPlanList from '@/Components/my-plan-files/SelectedPlanList';
 import React from 'react';
 
-
-
-
+const stat = 'flex flex-col justify-start gap-1 border-t border-line pt-5 first:border-t-0 first:pt-0 sm:border-t-0 sm:border-l sm:pt-0 sm:px-6 sm:first:pl-0 sm:first:border-l-0';
 
 const page = () => {
-
     return (
-        <div className='container mx-auto mt-16 space-y-8'>
+        <div className='page-shell px-4 sm:px-6 mt-8 sm:mt-12 space-y-6 sm:space-y-8 pb-8'>
             <div>
-                <h1 className='text-3xl font-bold'>MY PLAN</h1>
-                <p className='text-sm font-light'>Cap of five lifts for today. Finish them, then load more.</p>
+                <h1 className='text-3xl sm:text-4xl font-black tracking-tight'>MY PLAN</h1>
+                <p className='mt-1 text-sm text-muted font-light'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
 
-
-
-            <div className='grid grid-cols-3  bg-black/20 p-8 rounded-2xl'>
-
-                <div className='flex flex-col justify-start '>
-                    <h2 className='text-sm font-light text-gray-400 '>Excersice</h2>
-                    <Excersice/>
+            <div className='grid grid-cols-1 sm:grid-cols-3 bg-surface border border-line p-5 sm:p-8 gap-5 sm:gap-0 rounded-2xl'>
+                <div className={stat}>
+                    <h2 className='text-xs sm:text-sm font-light text-muted'>Exercises</h2>
+                    <Excersice />
                 </div>
-
-
-                <div className='flex flex-col justify-start border-l border-gray-700/60 pl-6'>
-                    <h2 className='text-sm font-light text-gray-400'>Minutes</h2>
-                    <Minutes/>
+                <div className={stat}>
+                    <h2 className='text-xs sm:text-sm font-light text-muted'>Minutes</h2>
+                    <Minutes />
                 </div>
-
-
-                <div className='flex flex-col items-start border-l border-gray-700/60 pl-6'>
-                    <h2 className='text-sm font-light text-gray-400'>Calories</h2>
-                    <Calories/>
+                <div className={stat}>
+                    <h2 className='text-xs sm:text-sm font-light text-muted'>Calories</h2>
+                    <Calories />
                 </div>
-
             </div>
 
-
-
-
-            <SelectedPlanList/>
+            <SelectedPlanList />
         </div>
     );
 };

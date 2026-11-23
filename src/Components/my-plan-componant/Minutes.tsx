@@ -34,9 +34,9 @@ const Minutes = () => {
     return (
         <div>
             {
-                isActive === "plan" ? <h1 className='text-5xl font-bold'>
+                isActive === "plan" ? <h1 className='text-3xl sm:text-5xl font-black'>
                     {totalPlanMinutes}
-                </h1> : <h1 className='text-5xl font-bold'>
+                </h1> : <h1 className='text-3xl sm:text-5xl font-black'>
                     {totalSavedMinutes}
                 </h1>
             }

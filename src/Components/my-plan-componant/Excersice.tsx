@@ -35,8 +35,8 @@ const Excersice = () => {
 
 
             {
-                isActive === "plan" ? (<h1 className='text-5xl font-bold text-lime-500'> {myPlan.length}</h1>) :
-                    (<h1 className='text-5xl font-bold text-lime-500'> {savePlan.length}</h1>)
+                isActive === "plan" ? (<h1 className='text-3xl sm:text-5xl font-black text-accent'> {myPlan.length}</h1>) :
+                    (<h1 className='text-3xl sm:text-5xl font-black text-accent'> {savePlan.length}</h1>)
             }
 
 

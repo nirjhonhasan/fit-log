@@ -36,9 +36,9 @@ const SaveLaterBtn = ({ item }: { item: IFit }) => {
 
     return (
         <button onClick={handleSaveLater}
-            className="w-full sm:w-auto bg-[#161822] hover:bg-[#202330] text-gray-300 font-semibold py-3 
+            className="w-full sm:w-auto bg-surface hover:bg-surface-2 font-semibold py-3 
         px-5 rounded-xl flex items-center justify-center gap-2 text-sm border
-         border-gray-800 transition-all cursor-pointer">
+         border-line hover:border-accent/50 transition-all cursor-pointer">
             Save for later
         </button>
     );

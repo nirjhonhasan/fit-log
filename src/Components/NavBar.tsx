@@ -4,50 +4,45 @@ import Link from 'next/link';
 import PlanBtn from './Nav-btn-activities/PlanBtn';
 import SavedBtn from './Nav-btn-activities/SavedBtn';
 
-
+const linkClass = 'hover:bg-accent/10 hover:text-accent text-sm font-bold rounded-full';
 
 const navItem = <>
-        <li className='hover:bg-lime-500/10 hover:text-lime-500 text-sm font-bold rounded-full'><Link href='/'>Workouts</Link></li>
-        <li className='hover:bg-lime-500/10 hover:text-lime-500 text-sm font-bold rounded-full'><Link href='/my-plan'>My Plan</Link></li>
-    </>
-
-
+    <li><Link className={linkClass} href='/'>Workouts</Link></li>
+    <li><Link className={linkClass} href='/my-plan'>My Plan</Link></li>
+</>
 
 const NavBar = () => {
-
-
     return (
-        <div className="navbar container mx-auto">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg aria-label="Menu" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+        <header className='sticky top-0 z-40 border-b border-line bg-base-100/80 backdrop-blur'>
+            <div className="navbar container mx-auto px-2 sm:px-6 min-h-16">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" aria-label="Open menu" className="btn btn-ghost btn-sm px-2 lg:hidden">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        </div>
+                        <ul
+                            tabIndex={-1}
+                            className="menu menu-sm dropdown-content bg-surface-2 border border-line rounded-box z-10 mt-3 w-52 p-2 shadow-xl">
+                            {navItem}
+                        </ul>
                     </div>
-                    <ul
-                        tabIndex={-1}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <Link href='/' className="btn btn-ghost px-2 text-lg sm:text-xl font-black tracking-wide">
+                        <Image src={logo} height={24} width={24} alt='Fit Log' />
+                        FITLOG
+                    </Link>
+                </div>
+
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1 gap-1">
                         {navItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">
-                    <Image
-                        src={logo}
-                        height={25}
-                        width={25}
-                        alt='Fit Log'/>
 
-                    FITLOG</a>
+                <div className="navbar-end gap-2 sm:gap-3">
+                    <PlanBtn /> <SavedBtn />
+                </div>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 rounded-full">
-                   {navItem}
-                </ul>
-            </div>
-            <div className="navbar-end gap-4">
-                <PlanBtn/> <SavedBtn/>
-                
-            </div>
-        </div>
+        </header>
     );
 };
 

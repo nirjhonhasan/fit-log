@@ -1,2 +1,78 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+}
+
+/* One source of truth for the FitLog palette */
+@plugin "daisyui/theme" {
+  name: "fitlog";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #0c0e13;
+  --color-base-200: #12151c;
+  --color-base-300: #1a1e28;
+  --color-base-content: #e8eaf0;
+  --color-primary: #c6f432;
+  --color-primary-content: #0c0e13;
+  --color-secondary: #1a1e28;
+  --color-secondary-content: #e8eaf0;
+  --color-accent: #c6f432;
+  --color-accent-content: #0c0e13;
+  --color-neutral: #1a1e28;
+  --color-neutral-content: #e8eaf0;
+  --color-info: #38bdf8;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+}
+
+@theme {
+  --color-surface: #12151c;
+  --color-surface-2: #1a1e28;
+  --color-line: #262b38;
+  --color-accent: #c6f432;
+  --color-accent-hover: #b0dc1f;
+  --color-muted: #8b93a7;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+:root {
+  --surface: #12151c;
+  --accent: #c6f432;
+}
+
+.page-shell {
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(60rem 30rem at 50% -10%, rgb(198 244 50 / 0.06), transparent 70%),
+    #0c0e13;
+  color: #e8eaf0;
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* react-toastify blends with the theme */
+.Toastify__toast {
+  background: var(--color-surface-2);
+  color: #e8eaf0;
+  border: 1px solid var(--color-line);
+  border-radius: 0.875rem;
+}

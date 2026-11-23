@@ -35,15 +35,15 @@ const TodayPlanRoute = ({ plans }:SavePlanRouteProps) => {
 
 
     return (
-        <div className="w-full flex flex-col gap-4 p-4">
+        <div className="w-full flex flex-col gap-3 sm:gap-4 p-3 sm:p-4">
             {plans?.map((plan: IFit) => (
                 <div
                     key={plan.id}
-                    className="w-full bg-[#12141d] border border-gray-800/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-gray-700 transition-all shadow-lg"
+                    className="w-full bg-surface border border-line rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-accent/40 transition-all shadow-lg"
                 >
                     
-                    <div className="flex items-center gap-4 w-full sm:w-auto">
-                        <div className="relative w-28 h-20 sm:w-32 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-gray-800">
+                    <div className="flex items-center gap-4 w-full sm:w-auto min-w-0">
+                        <div className="relative w-24 h-20 sm:w-32 rounded-xl overflow-hidden shrink-0 bg-surface-2">
                             <Image
                                 src={plan.image}
                                 alt={plan.name}
@@ -52,25 +52,25 @@ const TodayPlanRoute = ({ plans }:SavePlanRouteProps) => {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1">
-                            <h3 className="text-white font-bold text-lg tracking-wide uppercase">
+                        <div className="flex flex-col gap-1 min-w-0">
+                            <h3 className="font-bold text-base sm:text-lg tracking-wide uppercase truncate">
                                 {plan.name}
                             </h3>
-                            <p className="text-gray-400 text-sm font-medium">
+                            <p className="text-muted text-sm font-medium">
                                 {plan.equipment}
                             </p>
 
-                            <div className="flex items-center gap-4 text-xs font-medium text-gray-300 mt-1">
-                                <span className="flex items-center gap-1 text-lime-400">
-                                    <FiClock className="text-lime-400 text-sm" />
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium mt-1">
+                                <span className="flex items-center gap-1 text-accent">
+                                    <FiClock className="text-accent text-sm" />
                                     {plan.duration} min
                                 </span>
-                                <span className="flex items-center gap-1 text-lime-400">
-                                    <IoFlame className="text-lime-400 text-sm" />
+                                <span className="flex items-center gap-1 text-accent">
+                                    <IoFlame className="text-accent text-sm" />
                                     {plan.caloriesBurned} kcal
                                 </span>
-                                <span className="flex items-center gap-1 text-lime-400">
-                                    <FiStar className="text-lime-400 text-sm" />
+                                <span className="flex items-center gap-1 text-accent">
+                                    <FiStar className="text-accent text-sm" />
                                     {plan.rating}
                                 </span>
                             </div>
@@ -80,21 +80,21 @@ const TodayPlanRoute = ({ plans }:SavePlanRouteProps) => {
 
 
                     
-                    <div className="flex items-center gap-3 w-full sm:w-auto justify-end mt-2 sm:mt-0">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
                         <Link href={`/workouts/${plan.id}`}
-                        className="px-4 py-2 rounded-full border border-gray-700 hover:border-gray-500 text-gray-200 text-xs font-semibold transition-all">
+                        className="px-4 py-2 rounded-full border border-line hover:border-accent/60 hover:text-accent text-xs font-semibold transition-all">
                             View Details
                         </Link>
 
                         <button onClick={() => handleRemove(plan.id)}
-                        className="px-4 py-2 rounded-full bg-[#ccff00] hover:bg-[#b5e600] text-black font-bold text-xs flex items-center gap-1.5 transition-all shadow-md">
+                        className="px-4 py-2 rounded-full bg-accent hover:bg-accent-hover text-black font-bold text-xs flex items-center gap-1.5 transition-all shadow-md">
                             <FaCheck className="text-sm" />
                             Mark as Done
                         </button>
 
                         <button
                             onClick={() => handleRemove(plan.id)}
-                            className="text-gray-500 hover:text-gray-300 p-1 transition-all ml-1"
+                            className="text-muted hover:text-white p-1.5 rounded-full hover:bg-surface-2 transition-all ml-1"
                             title="Remove plan"
                         >
                             <RxCross2 className="text-lg" />

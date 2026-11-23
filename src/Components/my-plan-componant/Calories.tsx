@@ -35,9 +35,9 @@ const Calories = () => {
     return (
         <div>
             {
-                isActive === "plan" ? <h1 className='text-5xl font-bold'>
+                isActive === "plan" ? <h1 className='text-3xl sm:text-5xl font-black'>
                     {totalPlanCalories}
-                </h1> : <h1 className='text-5xl font-bold'>
+                </h1> : <h1 className='text-3xl sm:text-5xl font-black'>
                     {totalSavedCalories}
                 </h1>
             }

@@ -53,88 +53,50 @@ const SelectedPlanList = () => {
 
 
 
+    const tab = (active: boolean) =>
+        `rounded-full text-sm px-4 py-2 transition-all cursor-pointer ${active
+            ? "bg-accent text-black font-bold"
+            : "text-muted hover:text-white hover:bg-surface-2 font-medium"}`;
+
+    const empty = (
+        <div className='flex flex-col text-center justify-center items-center py-16 sm:py-28 px-4'>
+            <h2 className='text-xl sm:text-2xl font-black uppercase'>Nothing Here Yet!</h2>
+            <p className='mt-1 mb-6 text-sm sm:text-base text-muted'>Browse the library and add a lift to get today moving.</p>
+            <Link href='/' className='px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-black text-sm font-bold transition'>
+                Go to Workouts
+            </Link>
+        </div>
+    );
+
     return (
         <div>
-            <div className='flex justify-between items-center'>
-                <div className='bg-black/20 inline px-2 py-2 rounded-full'>
-
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4'>
+                <div className='bg-surface border border-line p-1.5 rounded-full flex w-full sm:w-auto'>
                     <button onClick={() => setIsActive("plan")}
-                        className={`rounded-2xl text-md px-4 py-2 transition-all ${isActive === "plan"
-                            ? "bg-lime-500 text-black font-bold"
-                            : "bg-transparent text-gray-400 hover:text-white hover:bg-gray-800/60 font-light"
-                            }`}
-                    >Today's Plan</button>
-
+                        className={`${tab(isActive === "plan")} flex-1 sm:flex-none`}>Today&apos;s Plan</button>
                     <button onClick={() => setIsActive("saved")}
-                        className={`rounded-2xl text-md px-4 py-2 transition-all ${isActive === "saved"
-                            ? "bg-lime-500 text-black font-bold"
-                            : "bg-transparent text-gray-400 hover:text-white hover:bg-gray-800/60 font-light"
-                            }`}
-                    > Saved </button>
-
+                        className={`${tab(isActive === "saved")} flex-1 sm:flex-none`}>Saved</button>
                 </div>
 
-                <div className='flex justify-between items-center gap-4'>
-                    <h2 className='text-sm font-light'>Short By</h2>
-
-
-
-
-                    <div>
-                        <select defaultValue="shortby"
-                            onChange={(e) => setShortBy(e.target.value as "duration" | "rating" | "cal")}
-                            className="select appearance-none">
-
-
-                            <option disabled={true}>Duration</option>
-                            <option value={"duration"}>Duration</option>
-                            <option value={"rating"}>Rating</option>
-                            <option value={"cal"}>Calories</option>
-                        </select>
-                    </div>
-
-
-
+                <div className='flex items-center gap-3'>
+                    <label htmlFor='sort' className='text-sm text-muted'>Sort by</label>
+                    <select id='sort' defaultValue="duration"
+                        onChange={(e) => setShortBy(e.target.value as "duration" | "rating" | "cal")}
+                        className="select select-sm bg-surface border-line flex-1 sm:flex-none">
+                        <option value={"duration"}>Duration</option>
+                        <option value={"rating"}>Rating</option>
+                        <option value={"cal"}>Calories</option>
+                    </select>
                 </div>
             </div>
 
-
-
-
-            <div className='flex justify-center items-center border-dashed border border-gray-700 mt-6 rounded-2xl'>
-
-                {isActive === "plan" ? (
-                    sortedPlan.length === 0 ? (
-                        <div className='flex flex-col text-center justify-center items-center py-[120px]'>
-                            <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
-                            <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
-                            <Link href='/' className='px-4 py-2 rounded-full bg-lime-500 text-black font-bold'>
-                                Go to Workouts
-                            </Link>
-                        </div>
-                    ) : (
-                        <TodayPlanRoute plans={sortedPlan} />
-                    )
-                ) : (
-                    sortedPlan.length === 0 ? (
-                        <div className='flex flex-col text-center justify-center items-center py-[120px]'>
-                            <h2 className='text-2xl font-bold uppercase'>Nothing Here Yet!</h2>
-                            <p className='mb-6 text-gray-500'>Browse the library and add a lift to get today moving.</p>
-                            <Link href='/' className='px-4 py-2 rounded-full bg-lime-500 text-black font-bold'>
-                                Go to Workouts
-                            </Link>
-                        </div>
-                    ) : (
-                        <SavePlanRoute plans={sortedPlan} />
-                    )
+            <div className='border-dashed border border-line mt-6 rounded-2xl overflow-hidden'>
+                {sortedPlan.length === 0 ? empty : (
+                    isActive === "plan"
+                        ? <TodayPlanRoute plans={sortedPlan} />
+                        : <SavePlanRoute plans={sortedPlan} />
                 )}
-
-
-
-
-
             </div>
-
         </div>
     );
 };

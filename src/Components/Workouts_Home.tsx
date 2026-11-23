@@ -2,37 +2,31 @@ import React from 'react';
 import WorksoutCard from './WorksoutCard';
 import { IFit } from '@/Types/FitTypes';
 
-
-
 const FitResponse = async () => {
-    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {cache: "no-store"});
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', { cache: "no-store" });
 
     return res.json();
 }
-
-
 
 const Workouts_Home = async () => {
 
     const fitData = await FitResponse();
 
     return (
-        <div className='container mx-auto mt-6 pt-4'>
-            <div className='py-8'>
-                <h1 className='text-5xl font-bold'>THE LIBRARY</h1>
-                <p className='text-md text-gray-500 font-light'>Twelve lifts covering every major muscle group.</p>
+        <section id='library' className='container mx-auto px-4 sm:px-6 mt-10 sm:mt-14 scroll-mt-20'>
+            <div className='pb-6 sm:pb-8'>
+                <h2 className='text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight'>THE LIBRARY</h2>
+                <p className='mt-1 text-sm sm:text-base text-muted font-light'>Twelve lifts covering every major muscle group.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {
-                    fitData.map((item:IFit) => {
-                        return <div key={item.id}>
-                            <WorksoutCard item ={item}/>
-                        </div>
-                    })
+                    fitData.map((item: IFit) => (
+                        <WorksoutCard key={item.id} item={item} />
+                    ))
                 }
             </div>
-        </div>
+        </section>
     );
 };
 
